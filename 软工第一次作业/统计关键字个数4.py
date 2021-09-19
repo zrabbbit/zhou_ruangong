@@ -86,12 +86,13 @@ def if_elseif_else_count(file):
 
 # 输入一个c/c++文件路径和等级
 code_path, level = map(str, input().split())
-fo = open(code_path, "r")
-total_num = total_count(fo)
-print("total num:", total_num)
-fo = open(code_path, "r")
-switch_count(fo)
-fo = open(code_path, "r")
-print()
-if_elseif_else_count(fo)
-fo.close()
+if code_path.endswith(".c") or code_path.endswith(".cpp"):
+    fo = open(code_path, "r")
+    total_num = total_count(fo)
+    print("total num:", total_num)
+    fo = open(code_path, "r")
+    switch_count(fo)
+    fo = open(code_path, "r")
+    print()
+    if_elseif_else_count(fo)
+    fo.close()
