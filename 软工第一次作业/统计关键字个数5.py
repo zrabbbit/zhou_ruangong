@@ -100,7 +100,7 @@ if code_path.endswith(".c") or code_path.endswith(".cpp"):
     print("total num:", total_num)
     fo = open(code_path, "r")
     switch_count(fo)
-    print()
     fo = open(code_path, "r")
+    print()
     if_elseif_else_count(fo)
     fo.close()
