@@ -104,3 +104,5 @@ if code_path.endswith(".c") or code_path.endswith(".cpp"):
     print()
     if_elseif_else_count(fo)
     fo.close()
+else:
+    print("Error：输入的文件格式不对")
