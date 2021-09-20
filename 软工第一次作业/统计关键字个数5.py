@@ -54,7 +54,7 @@ def if_elseif_else_count(file):
     # 实现 if-else 组的个数统计和 if-elseif-else 组的个数统计
     file_str: str = file.read()
     file_str = re.sub(rule, "", file_str)
-    if_elseif_else_num = 0
+    if_elseif_else_sum = 0
     if_else_num = 0
     if_list = list()  # 1:if  2:else if
     i = 0
@@ -71,7 +71,7 @@ def if_elseif_else_count(file):
                 i += 7
             elif i + 3 < len(file_str) and file_str[i:i + 4] == 'else':
                 if if_list[-1] != 1:
-                    if_elseif_else_num += 1
+                    if_elseif_else_sum += 1
                 else:
                     if_else_num += 1
                 while if_list[-1] != 1:
@@ -91,21 +91,26 @@ def if_elseif_else_count(file):
         else:
             i += 1
     print("if-else num:", if_else_num)
-    print("if-elseif-else num:", if_elseif_else_num)
-    return if_else_num
+    return if_elseif_else_sum
 
 
 # 输入一个c/c++文件路径和等级
 code_path, level = map(str, input().split())
 if code_path.endswith(".c") or code_path.endswith(".cpp"):
+    level = int(level)
     fo = open(code_path, "r")
-    total_num = total_count(fo)
-    print("total num:", total_num)
-    fo = open(code_path, "r")
-    switch_count(fo)
-    fo = open(code_path, "r")
-    print()
-    if_elseif_else_count(fo)
+    if level > 0:
+        total_num = total_count(fo)
+        print("total num:", total_num)
+    if level > 1:
+        fo = open(code_path, "r")
+        switch_count(fo)
+    if level > 2:
+        fo = open(code_path, "r")
+        print()
+        if_elseif_else_num = if_elseif_else_count(fo)
+        if level > 3:
+            print("if-elseif-else num:", if_elseif_else_num)
     fo.close()
 else:
     print("Error：输入的文件格式不对")
