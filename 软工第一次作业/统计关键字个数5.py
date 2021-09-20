@@ -1,11 +1,11 @@
 import re
 
-str2 = ['auto', 'break', 'case', 'char', 'const', 'continue', 'default',
-        'do', 'double', 'else', 'enum', 'extern', 'float', 'for', 'goto',
-        'if', 'int', 'long', 'register', 'return', 'short', 'signed', 'sizeof',
-        'static', 'struct', 'switch', 'typedef', 'union', 'unsigned', 'void',
-        'volatile', 'while'
-        ]
+keyword = ['auto', 'break', 'case', 'char', 'const', 'continue', 'default',
+           'do', 'double', 'else', 'enum', 'extern', 'float', 'for', 'goto',
+           'if', 'int', 'long', 'register', 'return', 'short', 'signed', 'sizeof',
+           'static', 'struct', 'switch', 'typedef', 'union', 'unsigned', 'void',
+           'volatile', 'while'
+           ]
 rule = "(/\\*\\*/)|(/\\*[\\s\\S]*?\\*/)|(//[\\s\\S]*?\n)|(\"[\\s\\S]*?\")"
 
 
@@ -18,7 +18,7 @@ def total_count(file):
     file_str_list = re.split(r'[^a-zA-Z]+', file_str)
     total_sum = 0
     for x in file_str_list:
-        if x in str2:
+        if x in keyword:
             total_sum += 1
     return total_sum
 
