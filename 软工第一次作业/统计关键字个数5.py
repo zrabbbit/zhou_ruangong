@@ -1,12 +1,12 @@
 import re
 
-keyword = ['auto', 'break', 'case', 'char', 'const', 'continue', 'default',
+keyword = {'auto', 'break', 'case', 'char', 'const', 'continue', 'default',
            'do', 'double', 'else', 'enum', 'extern', 'float', 'for', 'goto',
            'if', 'int', 'long', 'register', 'return', 'short', 'signed', 'sizeof',
            'static', 'struct', 'switch', 'typedef', 'union', 'unsigned', 'void',
            'volatile', 'while'
-           ]
-rule = "(/\\*\\*/)|(/\\*[\\s\\S]*?\\*/)|(//[\\s\\S]*?\n)|(\"[\\s\\S]*?\")"
+           }
+rule = '(/\\*\\*/)|(/\\*[\\s\\S]*?\\*/)|(//[\\s\\S]*?\n)|("[\\s\\S]*?")'
 
 
 def total_count(file):
@@ -57,9 +57,9 @@ def if_elseif_else_count(file):
     if_list = list()  # 1:if  2:else if
     i = 0
     while i < len(file_str):
-        if i + 1 < len(file_str) and file_str[i:i+2] == 'if':
-                if_list.append(1)
-                i += 2
+        if i + 1 < len(file_str) and file_str[i:i + 2] == 'if':
+            if_list.append(1)
+            i += 2
         elif file_str[i] == 'e':
             if i + 6 < len(file_str) and file_str[i:i + 7] == 'else if':
                 if_list.append(2)
@@ -89,8 +89,9 @@ def if_elseif_else_count(file):
     return if_elseif_else_sum
 
 
-# 输入一个c/c++文件路径和等级
+# 输入一个 c/c++ 文件路径和等级
 code_path, level = map(str, input().split())
+# 判断文件格式是否正确
 if code_path.endswith(".c") or code_path.endswith(".cpp"):
     level = int(level)
     fo = open(code_path, "r")
