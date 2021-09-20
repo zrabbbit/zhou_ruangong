@@ -35,9 +35,7 @@ def switch_count(file):
             switch_sum += 1
             case_list.append(0)
         if x == 'case':
-            t = case_list.pop()
-            t += 1
-            case_list.append(t)
+            case_list[-1] += 1
     print("switch num:", switch_sum + 1)
     i = 0
     if switch_sum < 0:
@@ -59,12 +57,9 @@ def if_elseif_else_count(file):
     if_list = list()  # 1:if  2:else if
     i = 0
     while i < len(file_str):
-        if file_str[i] == 'i':
-            if i + 1 < len(file_str) and file_str[i + 1] == 'f':
+        if i + 1 < len(file_str) and file_str[i:i+2] == 'if':
                 if_list.append(1)
                 i += 2
-            else:
-                i += 1
         elif file_str[i] == 'e':
             if i + 6 < len(file_str) and file_str[i:i + 7] == 'else if':
                 if_list.append(2)
