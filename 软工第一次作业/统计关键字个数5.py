@@ -39,11 +39,14 @@ def switch_count(file):
             t += 1
             case_list.append(t)
     print("switch num:", switch_sum + 1)
-    print("case num:", end=' ')
     i = 0
-    while i <= switch_sum:
-        print(case_list[i], end=' ')
-        i += 1
+    if switch_sum < 0:
+        print("case num: 0", end='')
+    else:
+        print("case num:", end=' ')
+        while i <= switch_sum:
+            print(case_list[i], end=' ')
+            i += 1
     return switch_sum
 
 
